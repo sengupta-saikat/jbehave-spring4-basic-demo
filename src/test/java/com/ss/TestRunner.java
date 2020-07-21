@@ -10,7 +10,6 @@ import org.jbehave.core.parsers.gherkin.GherkinStoryParser;
 import org.jbehave.core.reporters.CrossReference;
 import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.PrintStreamStepdocReporter;
-import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.ParameterConverters;
 import org.jbehave.core.steps.SilentStepMonitor;
@@ -40,7 +39,7 @@ public class TestRunner extends JUnitStories {
                 .useStoryLoader(new LoadFromClasspath(this.getClass().getClassLoader()))
                 .usePendingStepStrategy(new FailingUponPendingStep())
                 .useStepdocReporter(new PrintStreamStepdocReporter())
-                .useStoryReporterBuilder(new StoryReporterBuilder()
+                .useStoryReporterBuilder(new CustomStoryReporterBuilder()
                         .withCodeLocation(CodeLocations.codeLocationFromClass(this.getClass()))
                         .withDefaultFormats()
                         .withFormats(Format.CONSOLE, Format.TXT, Format.HTML, Format.XML, Format.STATS)
